@@ -1,0 +1,57 @@
+<div class="container">
+  <mat-card>
+      <mat-card-header>
+         <mat-card-title>SignUp</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+         <form [formGroup]="signup" (ngSubmit)="onSubmit()">
+             <mat-form-field appearance="fill">
+               <mat-label>First Name</mat-label>
+               <mat-icon matPrefix>person</mat-icon>
+               <input matInput formControlName="Fname" placeholder="Enter your First Name"/>
+               <mat-error *ngIf="signup.get('Fname')?.invalid && (signup.get('Fname')?.dirty || signup.get('Fname')?.touched)">
+                {{ getErrorMessage('Fname') }}
+              </mat-error>
+             </mat-form-field>
+             <mat-form-field appearance="fill">
+               <mat-label>Last Name</mat-label>
+               <mat-icon matPrefix>person_outline</mat-icon>
+               <input matInput formControlName="Lname" placeholder="Enter your Last Name"/>
+               <mat-error *ngIf="signup.get('Lname')?.invalid && (signup.get('Lname')?.dirty || signup.get('Lname')?.touched)">
+                {{ getErrorMessage('Lname') }}
+              </mat-error>
+             </mat-form-field>
+             <mat-form-field appearance="fill">
+               <mat-label>Email</mat-label>
+               <mat-icon matPrefix>email</mat-icon>
+               <input matInput formControlName="Email" type="email" placeholder="Enter your Email"/>
+               <mat-error *ngIf="signup.get('Email')?.invalid && (signup.get('Email')?.dirty || signup.get('Email')?.touched)">
+                {{ getErrorMessage('Email') }}
+              </mat-error>
+             </mat-form-field>
+             <mat-form-field appearance="fill">
+               <mat-label>Phone Number</mat-label>
+               <mat-icon matPrefix>phone</mat-icon>
+               <input matInput formControlName="Phone" placeholder="Enter your Phone Number"/>
+               <mat-error *ngIf="signup.get('Phone')?.invalid && (signup.get('Phone')?.dirty || signup.get('Phone')?.touched)">
+                {{ getErrorMessage('Phone') }}
+              </mat-error>
+             </mat-form-field>
+             <mat-form-field appearance="fill">
+               <mat-label>Password</mat-label>
+               <mat-icon matPrefix>lock</mat-icon>
+               <input matInput formControlName="Password" [type]="hidepassword?'password':'text'"placeholder="Enter your Password"/>
+               <mat-error *ngIf="signup.get('Password')?.invalid && (signup.get('Password')?.dirty || signup.get('Password')?.touched)">
+                {{ getErrorMessage('Password') }}
+              </mat-error>
+                  <mat-icon mat-icon-button matSuffix (click)="togglePassword()">{{hidepassword?'visibility_off':'visibility'}}</mat-icon>
+             </mat-form-field>
+            <br>
+             <span>Already have an account: <a [routerLink]="['/login']">Login</a></span>
+             <br/>
+             <button [disabled]="signup.invalid" mat-raised-button color="primary" type="submit">Submit</button>
+         </form>
+      </mat-card-content>
+  </mat-card>
+</div>
+<router-outlet></router-outlet>
